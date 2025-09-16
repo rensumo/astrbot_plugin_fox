@@ -9,7 +9,7 @@ import time
     "astrbot_plugin_fox",
     "rensumo",
     "随机发送一张狐狸图",
-    "1.0.1",  # 版本号更新
+    "1.0.2",  # 版本号更新
     "https://github.com/rensumo/astrbot_plugin_fox"
 )
 class DoroTodayPlugin(Star):
@@ -21,8 +21,14 @@ class DoroTodayPlugin(Star):
         self.cooldown_seconds = 1800
 
     @filter.command("dorotoday", alias={'狐狸图', '🦊图'})
-    async def dorotoday(self, event: AstrMessageEvent, *args, **kwargs):
+    async def dorotoday(self, *args, **kwargs):
         '''随机抽取一张狐狸图并发送，同时@发送者'''
+        # 从参数中提取event对象（通常是第一个参数）
+        event = args[0] if args else None
+        if not isinstance(event, AstrMessageEvent):
+            yield event.plain_result("获取事件对象失败")
+            return
+        
         # 获取发送者的ID
         sender_id = event.get_sender_id()
         
@@ -79,3 +85,4 @@ class DoroTodayPlugin(Star):
         
         # 发送消息
         yield event.chain_result(message_chain)
+    
