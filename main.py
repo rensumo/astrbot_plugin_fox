@@ -21,7 +21,7 @@ class DoroTodayPlugin(Star):
         self.cooldown_seconds = 1800
 
     @filter.command("dorotoday", alias={'狐狸图', '🦊图'})
-    async def dorotoday(self, event: AstrMessageEvent):
+    async def dorotoday(self, event: AstrMessageEvent, *args, **kwargs):
         '''随机抽取一张狐狸图并发送，同时@发送者'''
         # 获取发送者的ID
         sender_id = event.get_sender_id()
