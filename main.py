@@ -9,7 +9,7 @@ import time
     "astrbot_plugin_fox",
     "rensumo",
     "随机发送一张狐狸图",
-    "1.0.2",  # 版本号更新
+    "1.0.3",  # 版本号更新
     "https://github.com/rensumo/astrbot_plugin_fox"
 )
 class DoroTodayPlugin(Star):
@@ -43,7 +43,7 @@ class DoroTodayPlugin(Star):
             ])
             return
         
-        # 获取发送者昵称
+        # 获取发送者昵称（未使用，保留用于可能的扩展）
         try:
             sender_name = event.get_sender_name()
         except AttributeError:
@@ -69,11 +69,10 @@ class DoroTodayPlugin(Star):
         
         random_image = random.choice(image_files)
         image_path = os.path.join(doro_folder, random_image)
-        image_name = os.path.splitext(random_image)[0]  # 去除文件扩展名
         
+        # 消息链中移除图片名称，只保留@和图片
         message_chain = [
             At(qq=sender_id),
-            Plain(f" {image_name}"),
             Image.fromFileSystem(image_path)  
         ]
         
