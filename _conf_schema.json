@@ -1,0 +1,9 @@
+{
+  "fox_config": {
+    "cooldown_seconds": {
+      "type": "int",
+      "description": "狐狸图命令冷却时间（单位：秒）",
+      "default": 1800  // 默认30分钟（30*60=1800秒）
+    }
+  }
+}
